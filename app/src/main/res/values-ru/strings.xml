@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Сад ёжика</string>
+    <string name="game_title">Сад ёжика</string>
+    <string name="game_subtitle">Маленький сад, который ждёт цветов</string>
+    <string name="touch_to_begin">Коснись, чтобы начать</string>
+    <string name="tap_to_walk">Коснись клетки — ёжик сам найдёт дорогу</string>
+    <string name="collect_dew">Собери росу и разбуди каждый цветок</string>
+    <string name="paused">Маленькая садовая пауза</string>
+    <string name="touch_to_continue">Коснись, чтобы продолжить</string>
+    <string name="level_complete">Сад расцвёл!</string>
+    <string name="journey_complete">Все сады проснулись</string>
+    <string name="journey_complete_subtitle">Ёжик отдыхает среди десяти счастливых садов</string>
+    <string name="play_again">Коснись, чтобы вырастить их снова</string>
+    <string name="dew_label">Роса</string>
+    <string name="flowers_label">Цветы</string>
+    <string name="level_1">Утренний сад</string>
+    <string name="level_2">Клеверная тропа</string>
+    <string name="level_3">Ручеёк с лилиями</string>
+    <string name="level_4">Розовый уголок</string>
+    <string name="level_5">Сад камешков</string>
+    <string name="level_6">Поляна колокольчиков</string>
+    <string name="level_7">Мятный лабиринт</string>
+    <string name="level_8">Персиковая роща</string>
+    <string name="level_9">Лунный сад</string>
+    <string name="level_10">Золотой луг</string>
+    <string name="accessibility_game">Сад ёжика. Коснись клетки, чтобы направить ёжика. Собери росу, разбуди цветы и дойди до калитки.</string>
+    <string name="accessibility_dew_found">Роса собрана</string>
+    <string name="accessibility_flower_bloomed">Цветок расцвёл</string>
+    <string name="accessibility_level_complete">Сад расцвёл</string>
+</resources>

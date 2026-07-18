@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hedgehog Garden</string>
+    <string name="game_title">Hedgehog Garden</string>
+    <string name="game_subtitle">A tiny garden waiting to bloom</string>
+    <string name="touch_to_begin">Touch to begin</string>
+    <string name="tap_to_walk">Tap a garden tile — the hedgehog will find the way</string>
+    <string name="collect_dew">Collect dew, then visit every sleepy flower</string>
+    <string name="paused">A little garden pause</string>
+    <string name="touch_to_continue">Touch to continue</string>
+    <string name="level_complete">The garden is blooming!</string>
+    <string name="journey_complete">Every garden is awake</string>
+    <string name="journey_complete_subtitle">The hedgehog rests among ten happy gardens</string>
+    <string name="play_again">Touch to grow them again</string>
+    <string name="dew_label">Dew</string>
+    <string name="flowers_label">Flowers</string>
+    <string name="level_1">Morning Patch</string>
+    <string name="level_2">Clover Lane</string>
+    <string name="level_3">Lily Brook</string>
+    <string name="level_4">Rose Corner</string>
+    <string name="level_5">Pebble Garden</string>
+    <string name="level_6">Bluebell Bend</string>
+    <string name="level_7">Mint Maze</string>
+    <string name="level_8">Peach Grove</string>
+    <string name="level_9">Moon Garden</string>
+    <string name="level_10">Golden Meadow</string>
+    <string name="accessibility_game">Hedgehog Garden. Tap a tile to guide the hedgehog. Collect dew, bloom every flower, then reach the gate.</string>
+    <string name="accessibility_dew_found">Dew collected</string>
+    <string name="accessibility_flower_bloomed">Flower bloomed</string>
+    <string name="accessibility_level_complete">Garden complete</string>
+</resources>
