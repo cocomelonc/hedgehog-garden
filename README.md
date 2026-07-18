@@ -19,6 +19,12 @@ consistent on every Android device.
 
 ![Morning Patch gameplay](art/screenshots/01-morning-patch.png)
 
+The pause card uses a wide safe area, 72 logical pixels of horizontal content
+padding, and a smooth fade-and-scale entrance. Longer Russian text is measured
+and fitted inside the same margins.
+
+![Russian pause card with safe margins](art/screenshots/pause-ru.png)
+
 ## Gameplay
 
 - Tap any reachable tile; the hedgehog finds a shortest safe route.

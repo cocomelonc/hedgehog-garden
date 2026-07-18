@@ -38,6 +38,11 @@ final class HedgehogGardenView extends View implements GardenWorld.Listener {
     private static final float TILE = 68f;
     private static final float PAUSE_X = 1218f;
     private static final float PAUSE_Y = 53f;
+    private static final float OVERLAY_LEFT = 310f;
+    private static final float OVERLAY_TOP = 168f;
+    private static final float OVERLAY_RIGHT = 970f;
+    private static final float OVERLAY_BOTTOM = 552f;
+    private static final float OVERLAY_PADDING = 72f;
     private static final String PREFS = "hedgehog_garden_progress";
     private static final String PREF_RESUME_LEVEL = "resume_level";
     private static final String PREF_LANGUAGE = "language";
@@ -65,6 +70,8 @@ final class HedgehogGardenView extends View implements GardenWorld.Listener {
     private float hintTime;
     private int targetRow = -1;
     private int targetCol = -1;
+    private GardenWorld.State lastVisualState = GardenWorld.State.TITLE;
+    private float overlayProgress = 1f;
 
     HedgehogGardenView(Context context) {
         super(context);
@@ -116,6 +123,15 @@ final class HedgehogGardenView extends View implements GardenWorld.Listener {
             hintTime += dt;
         }
 
+        GardenWorld.State visualState = world.getState();
+        if (visualState != lastVisualState) {
+            lastVisualState = visualState;
+            overlayProgress = isOverlayState(visualState) ? 0f : 1f;
+        }
+        if (isOverlayState(visualState) && hostResumed) {
+            overlayProgress = Math.min(1f, overlayProgress + dt * 5.5f);
+        }
+
         paint.setStyle(Paint.Style.FILL);
         paint.setShader(outsideGradient);
         canvas.drawRect(0f, 0f, getWidth(), getHeight(), paint);
@@ -125,7 +141,7 @@ final class HedgehogGardenView extends View implements GardenWorld.Listener {
         canvas.translate(viewOffsetX, viewOffsetY);
         canvas.scale(viewScale, viewScale);
         float time = now / 1_000_000_000f;
-        if (world.getState() == GardenWorld.State.TITLE) {
+        if (visualState == GardenWorld.State.TITLE) {
             drawTitle(canvas, time);
         } else {
             drawLevel(canvas, time);
@@ -135,6 +151,10 @@ final class HedgehogGardenView extends View implements GardenWorld.Listener {
         if (hostResumed) {
             postInvalidateOnAnimation();
         }
+    }
+
+    private static boolean isOverlayState(GardenWorld.State state) {
+        return state == GardenWorld.State.PAUSED || state == GardenWorld.State.LEVEL_COMPLETE;
     }
 
     private void drawTitle(Canvas canvas, float time) {
@@ -501,24 +521,39 @@ final class HedgehogGardenView extends View implements GardenWorld.Listener {
     }
 
     private void drawOverlay(Canvas canvas, int titleRes, int subtitleRes, float time) {
-        paint.setColor(0x78635B6B);
+        float eased = overlayProgress * overlayProgress * (3f - 2f * overlayProgress);
+        paint.setColor(Color.argb(Math.round(120f * eased), 99, 91, 107));
         canvas.drawRect(0f, 0f, WORLD_WIDTH, WORLD_HEIGHT, paint);
-        rect.set(356f, 209f, 924f, 514f);
+
+        float cardScale = 0.95f + 0.05f * eased;
+        int layer = canvas.saveLayerAlpha(
+                OVERLAY_LEFT - 12f, OVERLAY_TOP - 12f,
+                OVERLAY_RIGHT + 16f, OVERLAY_BOTTOM + 20f,
+                Math.round(255f * eased)
+        );
+        canvas.scale(cardScale, cardScale, 640f, 360f);
+        paint.setColor(0x255B5260);
+        canvas.drawRoundRect(OVERLAY_LEFT + 4f, OVERLAY_TOP + 7f,
+                OVERLAY_RIGHT + 4f, OVERLAY_BOTTOM + 7f, 46f, 46f, paint);
         paint.setColor(0xF8FFF9EE);
-        canvas.drawRoundRect(rect, 42f, 42f, paint);
-        float scale = 1f + 0.035f * (float) Math.sin(time * 2.2f);
+        canvas.drawRoundRect(OVERLAY_LEFT, OVERLAY_TOP,
+                OVERLAY_RIGHT, OVERLAY_BOTTOM, 46f, 46f, paint);
+
+        float contentWidth = OVERLAY_RIGHT - OVERLAY_LEFT - OVERLAY_PADDING * 2f;
+        float iconPulse = 1f + 0.03f * (float) Math.sin(time * 2.2f);
         canvas.save();
-        canvas.translate(640f, 302f);
-        canvas.scale(scale, scale);
+        canvas.translate(640f, 251f);
+        canvas.scale(iconPulse, iconPulse);
         drawTinyFlower(canvas, 0f, 0f, world.getLevel().flowerColor);
         canvas.restore();
-        drawFittedText(canvas, text(titleRes), 640f, 384f,
-                39f, 485f, 0xFF625A69, true);
-        drawFittedText(canvas, text(subtitleRes), 640f, 447f,
-                23f, 420f, 0xFF817685, false);
+        drawFittedText(canvas, text(titleRes), 640f, 355f,
+                39f, contentWidth, 0xFF625A69, true);
+        drawFittedText(canvas, text(subtitleRes), 640f, 420f,
+                22f, contentWidth, 0xFF817685, false);
         if (world.getState() == GardenWorld.State.PAUSED) {
-            drawLanguageSwitch(canvas, 640f, 488f);
+            drawLanguageSwitch(canvas, 640f, 492f);
         }
+        canvas.restoreToCount(layer);
     }
 
     private void drawJourneyComplete(Canvas canvas, float time) {
@@ -707,7 +742,7 @@ final class HedgehogGardenView extends View implements GardenWorld.Listener {
                 }
             }
         } else if (state == GardenWorld.State.PAUSED) {
-            if (isLanguageHit(x, y, 640f, 488f)) {
+            if (isLanguageHit(x, y, 640f, 492f)) {
                 toggleLanguage();
             } else {
                 world.resume();
