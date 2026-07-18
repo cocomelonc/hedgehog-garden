@@ -25,8 +25,8 @@ final class AudioEngine {
     private volatile boolean closed;
 
     void playDew(int number) {
-        float base = 587.33f * (1f + number * 0.08f);
-        play(new float[]{base, base * 1.34f}, 0.24f, 0.12f);
+        float base = 523.25f * (1f + number * 0.07f);
+        play(new float[]{base, base * 1.25f, base * 1.50f}, 0.34f, 0.11f);
     }
 
     void playBloom(int number) {
@@ -89,8 +89,8 @@ final class AudioEngine {
                     .setBufferSizeInBytes(pcm.length * 2)
                     .setTransferMode(AudioTrack.MODE_STATIC)
                     .build();
-            if (track.getState() != AudioTrack.STATE_INITIALIZED
-                    || track.write(pcm, 0, pcm.length) < 0) {
+            int written = track.write(pcm, 0, pcm.length);
+            if (written != pcm.length || track.getState() != AudioTrack.STATE_INITIALIZED) {
                 return;
             }
             track.play();
