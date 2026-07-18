@@ -29,16 +29,16 @@ consistent on every Android device.
 
 ## Ten gardens
 
-- **Morning Patch** — a welcoming first garden with two small hedges.
-- **Clover Lane** — a long hedge teaches route planning.
-- **Lily Brook** — the first stream and a narrow bridge.
-- **Rose Corner** — flowers tucked around a rose hedge.
-- **Pebble Garden** — soft stone clusters create gentle detours.
-- **Bluebell Bend** — two bridge crossings through blue water.
-- **Mint Maze** — a readable, compact hedge maze.
-- **Peach Grove** — orchard-like rows in warm peach colors.
-- **Moon Garden** — lily pools and a quiet evening palette.
-- **Golden Meadow** — a final garden combining hedges, water, and bridges.
+- **Morning Patch** - a welcoming first garden with two small hedges.
+- **Clover Lane** - a long hedge teaches route planning.
+- **Lily Brook** - the first stream and a narrow bridge.
+- **Rose Corner** - flowers tucked around a rose hedge.
+- **Pebble Garden** - soft stone clusters create gentle detours.
+- **Bluebell Bend** - two bridge crossings through blue water.
+- **Mint Maze** - a readable, compact hedge maze.
+- **Peach Grove** - orchard-like rows in warm peach colors.
+- **Moon Garden** - lily pools and a quiet evening palette.
+- **Golden Meadow** - a final garden combining hedges, water, and bridges.
 
 Every level is a real 14×8 tilemap validated by automated reachability tests.
 The tests prove that the start, every dew drop, every flower, and the gate are

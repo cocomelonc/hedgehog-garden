@@ -4,7 +4,7 @@
     <string name="game_title">Сад ёжика</string>
     <string name="game_subtitle">Маленький сад, который ждёт цветов</string>
     <string name="touch_to_begin">Коснись, чтобы начать</string>
-    <string name="tap_to_walk">Коснись клетки — ёжик сам найдёт дорогу</string>
+    <string name="tap_to_walk">Коснись клетки - ёжик сам найдёт дорогу</string>
     <string name="collect_dew">Собери росу и разбуди каждый цветок</string>
     <string name="paused">Маленькая садовая пауза</string>
     <string name="touch_to_continue">Коснись, чтобы продолжить</string>

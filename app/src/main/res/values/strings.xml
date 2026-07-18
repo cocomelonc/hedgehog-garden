@@ -4,7 +4,7 @@
     <string name="game_title">Hedgehog Garden</string>
     <string name="game_subtitle">A tiny garden waiting to bloom</string>
     <string name="touch_to_begin">Touch to begin</string>
-    <string name="tap_to_walk">Tap a garden tile — the hedgehog will find the way</string>
+    <string name="tap_to_walk">Tap a garden tile - the hedgehog will find the way</string>
     <string name="collect_dew">Collect dew, then visit every sleepy flower</string>
     <string name="paused">A little garden pause</string>
     <string name="touch_to_continue">Touch to continue</string>
