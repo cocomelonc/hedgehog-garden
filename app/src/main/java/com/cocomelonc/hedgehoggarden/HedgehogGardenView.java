@@ -54,6 +54,7 @@ final class HedgehogGardenView extends View implements GardenWorld.Listener {
     private final android.graphics.Typeface bold;
     private final SharedPreferences preferences;
     private final AudioEngine audio = new AudioEngine();
+    private final MusicEngine music;
     private final GardenWorld world;
     private final List<Particle> particles = new ArrayList<>();
     private final Random random = new Random(0xC0C0A11L);
@@ -75,6 +76,7 @@ final class HedgehogGardenView extends View implements GardenWorld.Listener {
 
     HedgehogGardenView(Context context) {
         super(context);
+        music = new MusicEngine(context);
         setFocusable(true);
         setFocusableInTouchMode(true);
         setClickable(true);
@@ -124,6 +126,7 @@ final class HedgehogGardenView extends View implements GardenWorld.Listener {
         }
 
         GardenWorld.State visualState = world.getState();
+        music.setPlaying(hostResumed && visualState == GardenWorld.State.PLAYING);
         if (visualState != lastVisualState) {
             lastVisualState = visualState;
             overlayProgress = isOverlayState(visualState) ? 0f : 1f;
@@ -850,6 +853,7 @@ final class HedgehogGardenView extends View implements GardenWorld.Listener {
 
     void onHostPause() {
         hostResumed = false;
+        music.setPlaying(false);
         lastFrameNanos = 0L;
         world.pause();
     }
@@ -862,6 +866,7 @@ final class HedgehogGardenView extends View implements GardenWorld.Listener {
 
     void close() {
         hostResumed = false;
+        music.close();
         audio.close();
     }
 

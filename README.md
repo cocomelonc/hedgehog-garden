@@ -55,7 +55,8 @@ the app.
 
 - Native Java and Android Canvas; no game engine and no runtime dependencies.
 - Original procedural vector-like artwork that stays sharp at every density.
-- Procedural chimes; no bundled audio or codec dependency.
+- Original procedural chimes and calm background music; no sampled audio files
+  or codec dependency.
 - One activity, one custom view, and a pure-Java gameplay core.
 - Local progress only, stored in private `SharedPreferences`.
 - English and Russian resources bundled in every APK and AAB.
@@ -82,8 +83,8 @@ compatibility requirements. The verification script rejects any unexpected
 The debug APK was also clean-installed and exercised on a Pixel 7 emulator
 running Android 16/API 36. The runtime check covered launch, landscape scaling,
 shortest-path movement, dew collection, flower blooming, pause, Android Back,
-the `EN / RU` switch, and Cyrillic rendering. The screenshots above come from
-that build, not from a design mock-up.
+music playback/pause and Audio Focus release, the `EN / RU` switch, and Cyrillic
+rendering. The screenshots above come from that build, not from a design mock-up.
 
 ## Build
 
@@ -136,6 +137,7 @@ app/src/main/java/com/cocomelonc/hedgehoggarden/
   GardenWorld.java           testable movement and objective rules
   GardenLevel.java           ten immutable 14×8 tilemaps and palettes
   AudioEngine.java           tiny procedural chime synthesizer
+  MusicEngine.java           calm original procedural background music
 app/src/test/                full-journey and level reachability tests
 art/                         procedural-art licensing notes
 third_party/nunito/          exact SIL OFL license for the bundled font
@@ -151,7 +153,8 @@ network services must update its privacy declarations and store disclosures.
 ## License
 
 Project source and original procedural artwork are available under the MIT
-License. Nunito remains under the SIL Open Font License 1.1; see
+License. The original sound effects and music are documented in
+[AUDIO.md](AUDIO.md). Nunito remains under the SIL Open Font License 1.1; see
 [`third_party/nunito/OFL.txt`](third_party/nunito/OFL.txt).
 
 Hedgehog Garden was created by **cocomelonc**. The author and copyright notices
